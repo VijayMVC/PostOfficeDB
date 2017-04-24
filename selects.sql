@@ -25,6 +25,6 @@ join mailroutes using(routeid)
 join mail using(routeid) where deliveryaddress = '123 fake street';
 
 
-select
+select * from 
 
 
