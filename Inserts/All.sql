@@ -1,0 +1,106 @@
+DROP TABLE "BUILDING" CASCADE CONSTRAINTS;                      
+DROP TABLE "CREDENTIALS" CASCADE CONSTRAINTS;                   
+DROP TABLE "MAIL" CASCADE CONSTRAINTS;                          
+DROP TABLE "POSTMASTERS" CASCADE CONSTRAINTS;                   
+DROP TABLE "POSTALCODE" CASCADE CONSTRAINTS;                    
+DROP TABLE "SCHEDULE" CASCADE CONSTRAINTS;                      
+DROP TABLE "CARRIER" CASCADE CONSTRAINTS;                       
+DROP TABLE "CLERK" CASCADE CONSTRAINTS;                         
+DROP TABLE "ROUTES" CASCADE CONSTRAINTS;    
+DROP TABLE "VEHICLES" CASCADE CONSTRAINTS;                      
+DROP TABLE "VEHICLESTATUS" CASCADE CONSTRAINTS;                 
+DROP TABLE "EMPLOYEES" CASCADE CONSTRAINTS;
+SELECT 'DROP TABLE "' || table_name || '" CASCADE CONSTRAINTS;' FROM user_tables;
+SELECT 'TRUNCATE TABLE "' || table_name || '";' FROM user_tables;
+
+
+
+/*Insert mock data in proper order */
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'nonummy', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'libero', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'morbi', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'parturient', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'morbi', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'donec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'augue', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'semper', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'et', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'id', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'curabitur', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'magna', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'molestie', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'fringilla', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'nec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'non', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'odio', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'donec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'adipiscing', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'tempus', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+
+insert into VehicleStatus (VehicleStatusId, Name) values ('AVAIL', 'AVAILABLE');
+insert into VehicleStatus (VehicleStatusId, Name) values ('DECOM', 'DE-COMMISSIONED');
+insert into VehicleStatus (VehicleStatusId, Name) values ('INUSE', 'IN-USE');
+
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E8E FE6', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'A2A CD3', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B6A CC1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B8B CE2', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D2A FA6', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E7D AA7', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E3B EB4', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D2A DF8', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'F1B FF2', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'F4F DE2', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B5D EE9', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'A8C BE6', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B9D EF7', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D1A AE5', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D9C BC6', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E0F CD3', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'C3A FF3', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E3A CF5', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DD1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E8E CA6', 'INUSE');
+
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:20 AM', '6:41 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:10 AM', '6:30 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:04 AM', '6:28 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:26 AM', '6:50 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:35 AM', '5:31 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:08 AM', '6:51 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:11 AM', '6:01 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:23 AM', '5:40 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:55 AM', '6:48 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:20 AM', '6:16 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:58 AM', '6:33 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:48 AM', '5:37 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:01 AM', '5:04 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:28 AM', '6:20 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:37 AM', '6:24 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:37 AM', '5:22 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:20 AM', '6:00 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:27 AM', '5:43 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:11 AM', '5:41 PM');
+insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:53 AM', '6:16 PM');
+
+
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Raimund', 'Stegell', '86-(938)743-3259', 'rstegell0@wikimedia.org', 'OFFDUTY', 'S12');			
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Auberon', 'Davidai', '86-(215)159-3756', 'adavidai1@salon.com', 'SICK', 'S13');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Marcus', 'Risman', '86-(184)781-5870', 'mrisman2@tripadvisor.com', 'ONVACATION', 'S1');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Jacquette', 'Provest', '63-(704)823-0421', 'jprovest3@spiegel.de', 'SICK', 'S11');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Nat', 'Lovelady', '86-(707)193-6390', 'nlovelady4@unblog.fr', 'AVAILABLE', 'S5');				
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Amitie', 'O''Flaherty', '7-(515)466-0530', 'aoflaherty5@tiny.cc', 'SICK', 'S12');		
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Pattin', 'Abramovic', '963-(816)508-6897', 'pabramovic6@mit.edu', 'ONDUTY', 'S20');				
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Charo', 'Murty', '86-(258)583-7795', 'cmurty7@weebly.com', 'SICK', 'S8');				
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Gavra', 'Pascho', '385-(475)798-8943', 'gpascho8@scientificamerican.com', 'AVAILABLE', 'S20');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Claiborne', 'Tatterton', '1-(988)856-7976', 'ctatterton9@loc.gov', 'ONDUTY', 'S2');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Sheelah', 'Perotti', '249-(791)753-4945', 'sperottia@biglobe.ne.jp', 'ONVACATION', 'S3');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Ella', 'Mulloch', '380-(742)608-5800', 'emullochb@addthis.com', 'ONVACATION', 'S6');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Dori', 'Creavin', '1-(814)946-4389', 'dcreavinc@eepurl.com', 'SICK', 'S7');	
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Jaimie', 'Blainey', '241-(955)139-7698', 'jblaineyd@yandex.ru', 'AVAILABLE', 'S9');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Cordy', 'Huckabe', '86-(443)495-6420', 'chuckabee@washingtonpost.com', 'SICK', 'S15');	
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Rodie', 'Vasilyevski', '86-(970)260-4925', 'rvasilyevskif@desdev.cn', 'SICK', 'S18');		
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Gallard', 'Scotchmer', '86-(677)355-2760', 'gscotchmerg@nyu.edu', 'SICK', 'S8');			
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Sonny', 'Bevans', '49-(179)649-2641', 'sbevansh@shop-pro.jp', 'ONVACATION', 'S2');			
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Brander', 'Sciacovelli', '33-(275)680-7989', 'bsciacovellii@bloomberg.com', 'ONDUTY', 'S3');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Boyd', 'Lineen', '7-(171)990-4715', 'blineenj@facebook.com', 'OFFDUTY', 'S4');

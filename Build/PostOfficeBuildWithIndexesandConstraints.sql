@@ -45,12 +45,12 @@ CREATE TABLE Employees (
     Lastname varchar2(64)  NULL,
     Phone varchar2(64)  NULL,
     Email varchar2(64)  NULL,
+    ScheduleId varchar2(64) NOT NULL,
     Availability varchar2(64)  NOT NULL CHECK (Availability = 'AVAILABLE' or Availability = 'UNAVAILABLE' or Availability = 'SICK' 
     or Availability='OFFDUTY' or Availability='ONVACATION' or Availability='ONDUTY'),
     CONSTRAINT Employees_EmployeesId_pk PRIMARY KEY (EmployeeId)
 ) ;
 
-DROP TABLE EMPLOYEES CASCADE CONSTRAINTS;
 -- Table: Mail
 CREATE TABLE Mail (
     MailID varchar2(64)  NOT NULL,
@@ -82,7 +82,6 @@ CREATE TABLE Postalcode (
 ) ;
 
 -- Table: Routes
-DROP TABLE ROUTES CASCADE CONSTRAINTS;
 CREATE TABLE Routes (
     RouteId varchar2(64)  NOT NULL,
     RouteName varchar2(64)  NOT NULL,
@@ -94,15 +93,12 @@ CREATE TABLE Routes (
 -- Table: Schedule
 CREATE TABLE Schedule (
     ScheduleId varchar2(64)  NOT NULL,
-    EmployeeId varchar2(64)  NOT NULL,
-    StartTime date  NOT NULL,
-    EndTime date  NOT NULL,
-    BuildingId varchar2(64),
+    StartTime varchar2(64)  NOT NULL,
+    EndTime varchar2(64)  NOT NULL,
     CONSTRAINT Schedule_pk PRIMARY KEY (ScheduleId)
-) ;
+);
 
 -- Table: Vechicles
-DROP TABLE VEHICLES CASCADE CONSTRAINTS;
 CREATE TABLE Vehicles (
     VehicleId varchar2(64)  NOT NULL,
     PlateNo varchar2(64)  NOT NULL,
@@ -111,9 +107,8 @@ CREATE TABLE Vehicles (
 ) ;
 
 -- Table: VehicleStatus
-DROP TABLE VehicleStatus CASCADE CONSTRAINTS;
 CREATE TABLE VehicleStatus (
-    VehicleStatusId varchar2(64)  NOT NULL,
+    VehicleStatusId varchar2(64)  NOT NULL CHECK (VehicleStatusId = 'AVAIL' OR VehicleStatusId = 'INUSE' OR VehicleStatusId = 'DECOM' OR VehicleStatusId = 'RESERV'),
     Name varchar2(64)  NOT NULL,
     CONSTRAINT VehicleStatusId PRIMARY KEY (VehicleStatusId)
 ) ;
@@ -134,6 +129,7 @@ DROP INDEX VehicleId_index;
 DROP INDEX VehicleStatus_index;
 DROP INDEX VehicleStatusId_index;
 */
+
 CREATE INDEX BuildingId_index 
 on Building 
 (BuildingId ASC)
@@ -215,15 +211,11 @@ ALTER TABLE Carrier ADD CONSTRAINT Carrier_Routes
     FOREIGN KEY (RouteId)
     REFERENCES Routes (RouteId);
 
--- Reference: Carrier_Schedule (table: Carrier)
-ALTER TABLE Carrier ADD CONSTRAINT Carrier_Schedule
-    FOREIGN KEY (ScheduleId)
-    REFERENCES Schedule (ScheduleId);
 
 -- Reference: Carrier_Vechicles (table: Carrier)
-ALTER TABLE Carrier ADD CONSTRAINT Carrier_Vechicles
+ALTER TABLE Carrier ADD CONSTRAINT Carrier_Vehicles
     FOREIGN KEY (VehicleId)
-    REFERENCES Vechicles (VehicleId);
+    REFERENCES Vehicles (VehicleId);
 
 -- Reference: Clerk_Building (table: Clerk)
 ALTER TABLE Clerk ADD CONSTRAINT Clerk_Building
@@ -235,16 +227,17 @@ ALTER TABLE Clerk ADD CONSTRAINT Clerk_Employees
     FOREIGN KEY (EmployeeId)
     REFERENCES Employees (EmployeeId);
 
--- Reference: Clerk_Schedule (table: Clerk)
-ALTER TABLE Clerk ADD CONSTRAINT Clerk_Schedule
-    FOREIGN KEY (ScheduleId)
-    REFERENCES Schedule (ScheduleId);
 
 -- Reference: Credentials_Employees (table: Credentials)
 ALTER TABLE Credentials ADD CONSTRAINT Credentials_Employees
     FOREIGN KEY (EmployeeId)
     REFERENCES Employees (EmployeeId);
 
+-- Reference: Schedule_Employees (table: Schedule)
+ALTER TABLE Employees ADD CONSTRAINT Employees_Schedule
+    FOREIGN KEY (ScheduleId)
+    REFERENCES Schedule (ScheduleId);
+    
 -- Reference: MailId_Postalcode (table: Mail)
 ALTER TABLE Mail ADD CONSTRAINT MailId_Postalcode
     FOREIGN KEY (PostalCode)
@@ -260,17 +253,8 @@ ALTER TABLE PostMasters ADD CONSTRAINT PostMasters_Employees
     FOREIGN KEY (EmployeeId)
     REFERENCES Employees (EmployeeId);
 
--- Reference: Schedule_Employees (table: Schedule)
-ALTER TABLE Schedule ADD CONSTRAINT Schedule_Employees
-    FOREIGN KEY (EmployeeId)
-    REFERENCES Employees (EmployeeId);
 
-ALTER TABLE Schedule ADD CONSTRAINT Schedule_Building
-    FOREIGN KEY (BuildingId)
-    REFERENCES Building (BuildingId);
-
-
--- Reference: Vechicles_VehicleStatus (table: Vechicles)
-ALTER TABLE Vechicles ADD CONSTRAINT Vechicles_VehicleStatus
+-- Reference: Vehicles_VehicleStatus (table: Vehicles)
+ALTER TABLE Vehicles ADD CONSTRAINT Vehicles_VehicleStatus
     FOREIGN KEY (VehicleStatusId)
-    REFERENCES VehicleStatus (VechicleStatusId);
+    REFERENCES VehicleStatus (VehicleStatusId);
