@@ -1,0 +1,21 @@
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('1', 'nonummy', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('2', 'libero', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('3', 'morbi', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('4', 'parturient', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('5', 'morbi', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('6', 'donec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('7', 'augue', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('8', 'semper', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('9', 'et', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('10', 'id', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('11', 'curabitur', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('12', 'magna', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('13', 'molestie', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('14', 'fringilla', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('15', 'nec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('16', 'non', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('17', 'odio', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('18', 'donec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('19', 'adipiscing', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values ('20', 'tempus', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
+
