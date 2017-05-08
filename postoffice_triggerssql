@@ -1,0 +1,134 @@
+--INSERT INTO employees VALUES('E0001', '0001', 'DM1234', '0002', 'A931KFMD8' ,TO_DATE('2017-03- 10','YYYY-MM-DD'), 
+--TO_DATE('2017-04- 04','YYYY-MM-DD'), 5.99, null, 5.99,'0');
+
+-- check if addresses are same then telephone numbers can be the same otherwise be unique 
+
+--PM postmasters
+--CA carriers
+--CL clerks
+
+
+CREATE OR REPLACE TRIGGER AFTER_EMPLOYEES_INSERTORUPDATE
+AFTER INSERT OR UPDATE
+ON EMPLOYEES
+FOR EACH ROW
+BEGIN
+  INSERT INTO EMPLOYEES VALUES(:NEW.employeeid,:NEW.role, :NEW.firstname, :NEW.lastname, :NEW.phone,
+          :new.email, :new.availability);
+  if :NEW.EMPLOYEEID LIKE 'PM%' THEN
+    INSERT INTO POSTMASTERS VALUES(:NEW.employeeid, /*extension no*/, /*office no*/); 
+  ELSIF :NEW.EMPLOYEEID LIKE 'CA%' THEN
+    INSERT INTO CARRIER VALUES(:new.employeeid,:new.scheduleid, :new.routeid, :new.vehicleid, :newbuildingid); 
+    
+  ELSIF :NEW.EMPLOYEEID LIKE 'CL%' then
+    INSERT INTO CLERK () 
+  END IF;
+  END;
+
+--vehicle status
+-- postalcode
+--route
+--mail
+--carrier routes - joins carriers with all routes theyve done 
+
+
+
+
+
+--sequence for Building
+-- append B to id
+CREATE SEQUENCE Carrier_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 99999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+
+
+
+--sequence for PostMaster
+-- append PM to id
+CREATE SEQUENCE Carrier_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 99999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+
+
+--sequence for Clerks
+-- append CL to id
+CREATE SEQUENCE Carrier_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 99999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+
+
+--sequence for Carrier
+-- append CA to id
+CREATE SEQUENCE Carrier_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 99999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+
+
+--sequence for route 
+-- append R to id
+CREATE SEQUENCE RouteId_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 99999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+     
+--sequence for vehicle 
+-- append V to id 
+CREATE SEQUENCE VehicleId_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 9999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+ 
+ --sequence for vehicle 
+-- append S to id 
+CREATE SEQUENCE SequenceId_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 999999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+--sequence for mail
+-- append 
+CREATE SEQUENCE SequenceId_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 999999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+ 
+ --sequence for vechiclestatus
+-- append  vs to id
+CREATE SEQUENCE SequenceId_seq
+     INCREMENT BY 1
+     MINVALUE 1
+     MAXVALUE 999999999999999999
+     START WITH 1
+     CACHE 20
+     NOCYCLE;
+         
+     
+         
+     
