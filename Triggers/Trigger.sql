@@ -131,3 +131,19 @@ BEFORE INSERT
 BEGIN
   :new.scheduleId :=('S' || :new.scheduleId);
 END;
+
+CREATE OR REPLACE TRIGGER before_mail_insert
+BEFORE INSERT
+ON mail
+FOR EACH ROW
+DECLARE
+   role_xcep EXCEPTION;
+   PRAGMA EXCEPTION_INIT( role_xcep, -20001 );
+BEGIN
+  IF :new.ReturnAddress is null then
+    IF:new.Registration = 'Registered' then
+      DBMS_OUTPUT.PUT_LINE('Error: Registered mail must have a return address');
+      raise role_xcep;
+   END IF;
+  END IF;
+END;

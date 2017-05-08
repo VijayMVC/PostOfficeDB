@@ -5,7 +5,6 @@
 -- Table: Building
 CREATE TABLE Building (
     BuildingId varchar2(64)  NOT NULL,
-    
     EmployeeId varchar2(64)  NOT NULL,
     Phone varchar2(64)  NOT NULL,
     CONSTRAINT Building_pk PRIMARY KEY (BuildingId)
@@ -50,22 +49,28 @@ CREATE TABLE Employees (
     or Availability='OFFDUTY' or Availability='ONVACATION' or Availability='ONDUTY'),
     CONSTRAINT Employees_EmployeesId_pk PRIMARY KEY (EmployeeId)
 ) ;
-
+DROP TABLE MAIL CASCADE CONSTRAINTS;
 -- Table: Mail
 CREATE TABLE Mail (
     MailID varchar2(64)  NOT NULL,
     RouteId varchar2(64)  NOT NULL,
-    Registration varchar2(64)  NOT NULL CHECK (Registration='registered' or Registration='unregistered'),
+    Registration varchar2(64)  NOT NULL CHECK (Registration='Registered' or Registration='Unregistered'),
     PostalCode varchar2(64)  NOT NULL,
-    ReturnAddress varchar2(64)  NOT NULL,
-    Weight number(5,3)  NOT NULL,
-    TotalPostage number(2,0)  NOT NULL,
+    ReturnAddress varchar2(64),
+    DeliveryAddress varchar2(64)  NOT NULL,
+    Weight number(38)  NOT NULL,
+    TotalPostage number(38)  NOT NULL,
     DeliveryStatus varchar2(64)  NOT NULL,
     SenderName varchar2(64)  NOT NULL,
     ReceiverName varchar2(64)  NOT NULL,
     CONSTRAINT Mail_MailId_PK PRIMARY KEY (MailID)
 ) ;
 
+
+CREATE TABLE RouteCodes (
+  RouteId VARCHAR2(64) NOT NULL,
+  PostalCode VARCHAR2(64) NOT NULL
+);
 -- Table: PostMasters
 CREATE TABLE PostMasters (
     EmployeeId varchar2(64)  NOT NULL,
@@ -253,7 +258,13 @@ ALTER TABLE PostMasters ADD CONSTRAINT PostMasters_Employees
     FOREIGN KEY (EmployeeId)
     REFERENCES Employees (EmployeeId);
 
-
+ALTER TABLE RouteCodes ADD CONSTRAINT RouteCodes_Routes
+    FOREIGN KEY (RouteId)
+    REFERENCES Routes(RouteId);
+    
+ALTER TABLE RouteCodes ADD CONSTRAINT RouteCodes_PostalCode
+    FOREIGN KEY (PostalCode)
+    REFERENCES PostalCode(PostalCode); 
 -- Reference: Vehicles_VehicleStatus (table: Vehicles)
 ALTER TABLE Vehicles ADD CONSTRAINT Vehicles_VehicleStatus
     FOREIGN KEY (VehicleStatusId)
