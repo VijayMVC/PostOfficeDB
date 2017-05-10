@@ -78,6 +78,8 @@ CREATE TABLE Mail (
     DeliveryStatus varchar2(64)  NOT NULL,
     SenderName varchar2(64)  NOT NULL,
     ReceiverName varchar2(64)  NOT NULL,
+    Country VARCHAR2(64) CHECK (Country='us' or Country='international' or Country='local'),
+    SentTo VARCHAR2(64),
     CONSTRAINT Mail_MailId_PK PRIMARY KEY (MailID)
 ) ;
 

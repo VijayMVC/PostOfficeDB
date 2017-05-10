@@ -114,7 +114,7 @@ BEGIN
   /* Check if status is being changed to completed */
  if :new.routestatus = 'Completed' then
   rId := :new.routeId;
-  
+
   /* Use routeId to find vehicleId from carrier table */
   SELECT vehicleId INTO vID FROM carrier WHERE routeId = rId;
 
@@ -130,22 +130,6 @@ BEFORE INSERT
    FOR EACH ROW
 BEGIN
   :new.scheduleId :=('S' || :new.scheduleId);
-END;
-
-CREATE OR REPLACE TRIGGER before_mail_insert
-BEFORE INSERT
-ON mail
-FOR EACH ROW
-DECLARE
-   role_xcep EXCEPTION;
-   PRAGMA EXCEPTION_INIT( role_xcep, -20001 );
-BEGIN
-  IF :new.ReturnAddress is null then
-    IF:new.Registration = 'Registered' then
-      DBMS_OUTPUT.PUT_LINE('Error: Registered mail must have a return address');
-      raise role_xcep;
-   END IF;
-  END IF;
 END;
 
 
@@ -177,12 +161,35 @@ END;
 
 ----------------------------
 CREATE OR REPLACE TRIGGER before_mail_insert
- AFTER INSERT OR UPDATE
+ BEFORE INSERT
  ON MAIL
  for each row
 DECLARE
   routePostFix VARCHAR2(64);
+  role_xcep EXCEPTION;
+  PRAGMA EXCEPTION_INIT( role_xcep, -20001 );
 BEGIN
-  select nvl (substr(postalcode, 4, 2),null) into routePostFix from mail;
-  insert into postalcode (postalCode, routeID) values (:new.PostalCode, ('R'||routePostFix));
+  IF :new.ReturnAddress is null then
+    IF:new.Registration = 'Registered' then
+      DBMS_OUTPUT.PUT_LINE('Error: Registered mail must have a return address');
+      raise role_xcep;
+   END IF;
+   END IF;
+  if length(:new.PostalCode) = 7 then
+    if substr(:new.PostalCode, 1, 3) = 'H4J' OR substr(:new.PostalCode, 1, 3) = 'H7T' then
+      routePostFix := substr(:new.PostalCode, 5, 1);
+      insert into postalcode (postalCode, routeID) values (:new.PostalCode, ('R'||routePostFix));
+      :new.Country := 'local';
+    END IF;
+  ELSE
+    if length(:new.PostalCode) = 5 then
+      :new.Country := 'us';
+      :new.SentTo := 'sent to airport';
+ 
+    ELSIF length(:new.postalCode) > 5 then
+      :new.country := 'international';
+      :new.SentTo := 'sent to airport';
+    END IF;
+  End IF;
+  :new.MailId := 'M'||:New.MailId;
 END;
