@@ -63,13 +63,13 @@ CREATE TABLE Employees (
     Availability varchar2(64)  NOT NULL CHECK (Availability = 'AVAILABLE' or Availability = 'UNAVAILABLE' or Availability = 'SICK' 
     or Availability='OFFDUTY' or Availability='ONVACATION' or Availability='ONDUTY'),
     CONSTRAINT Employees_EmployeesId_pk PRIMARY KEY (EmployeeId)
-) ;
+);
 DROP TABLE MAIL CASCADE CONSTRAINTS;
+
 -- Table: Mail
 CREATE TABLE Mail (
     MailID varchar2(64)  NOT NULL,
-    RouteId varchar2(64)  NOT NULL,
-    Registration varchar2(64)  NOT NULL CHECK (Registration='Registered' or Registration='Unregistered'),
+    Registration varchar2(64)  NOT NULL CHECK (Registration='registered' or Registration='unregistered'),
     PostalCode varchar2(64)  NOT NULL,
     ReturnAddress varchar2(64),
     DeliveryAddress varchar2(64)  NOT NULL,
@@ -81,11 +81,6 @@ CREATE TABLE Mail (
     CONSTRAINT Mail_MailId_PK PRIMARY KEY (MailID)
 ) ;
 
-
-CREATE TABLE RouteCodes (
-  RouteId VARCHAR2(64) NOT NULL,
-  PostalCode VARCHAR2(64) NOT NULL
-);
 -- Table: PostMasters
 CREATE TABLE PostMasters (
     EmployeeId varchar2(64)  NOT NULL,
@@ -97,7 +92,7 @@ CREATE TABLE PostMasters (
 -- Table: Postalcode
 CREATE TABLE Postalcode (
     PostalCode varchar2(64)  NOT NULL,
-    DeliveryAddress varchar2(64)  NOT NULL,
+    RouteId varchar2(64),
     CONSTRAINT Postalcode_pk PRIMARY KEY (PostalCode)
 ) ;
 
@@ -128,7 +123,7 @@ CREATE TABLE Vehicles (
 
 -- Table: VehicleStatus
 CREATE TABLE VehicleStatus (
-    VehicleStatusId varchar2(64)  NOT NULL CHECK (VehicleStatusId = 'AVAIL' OR VehicleStatusId = 'INUSE' OR VehicleStatusId = 'DECOM' OR VehicleStatusId = 'RESERV'),
+    VehicleStatusId varchar2(64)  NOT NULL CHECK (VehicleStatusId = 'AVAIL' OR VehicleStatusId = 'INUSE' OR VehicleStatusId = 'DECOM'),
     Name varchar2(64)  NOT NULL,
     CONSTRAINT VehicleStatusId PRIMARY KEY (VehicleStatusId)
 ) ;
@@ -272,14 +267,12 @@ ALTER TABLE Mail ADD CONSTRAINT Mail_MailId_PK_MailRoutes
 ALTER TABLE PostMasters ADD CONSTRAINT PostMasters_Employees
     FOREIGN KEY (EmployeeId)
     REFERENCES Employees (EmployeeId);
-
-ALTER TABLE RouteCodes ADD CONSTRAINT RouteCodes_Routes
-    FOREIGN KEY (RouteId)
-    REFERENCES Routes(RouteId);
     
-ALTER TABLE RouteCodes ADD CONSTRAINT RouteCodes_PostalCode
-    FOREIGN KEY (PostalCode)
-    REFERENCES PostalCode(PostalCode); 
+-- Reference: PostMasters_Employees (table: PostMasters)
+ALTER TABLE PostalCode ADD CONSTRAINT PostalCode_Routes
+    FOREIGN KEY (RouteId)
+    REFERENCES Routes (RouteId);
+
 -- Reference: Vehicles_VehicleStatus (table: Vehicles)
 ALTER TABLE Vehicles ADD CONSTRAINT Vehicles_VehicleStatus
     FOREIGN KEY (VehicleStatusId)

@@ -147,3 +147,42 @@ BEGIN
    END IF;
   END IF;
 END;
+
+
+/* PostalCode Id trigger */
+-----------------------------------------------------
+CREATE OR REPLACE TRIGGER AFTER_Mail_INSERTORUPDATE
+ AFTER INSERT OR UPDATE
+ ON MAIL
+ for each row
+ DECLARE
+  type ids is varray(1000) of varchar(64);
+  postalcodes ids;
+  alreadyInserted number(4,0) := 0;
+BEGIN
+   DBMS_OUTPUT.PUT_LINE(:new.RouteId);
+   DBMS_OUTPUT.PUT_LINE(:new.PostalCode);
+ 
+  select postalcode bulk collect into postalcodes FROM postalcodes where postalcode = :new.PostalCode;
+  FOR i IN 1..postalcodes.COUNT LOOP
+    if postalcodes(i) = :new.postalcode then
+        alreadyInserted := 1;
+    end if;
+  END loop;
+  if alreadyInserted = 0 then
+    INSERT INTO postalcodes VALUES(NULL, :new.Postalcode);
+    end if;
+END;
+
+
+----------------------------
+CREATE OR REPLACE TRIGGER before_mail_insert
+ AFTER INSERT OR UPDATE
+ ON MAIL
+ for each row
+DECLARE
+  routePostFix VARCHAR2(64);
+BEGIN
+  select nvl (substr(postalcode, 4, 2),null) into routePostFix from mail;
+  insert into postalcode (postalCode, routeID) values (:new.PostalCode, ('R'||routePostFix));
+END;
