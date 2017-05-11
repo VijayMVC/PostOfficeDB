@@ -83,6 +83,19 @@ insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence
 insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:11 AM', '5:41 PM');
 insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:53 AM', '6:16 PM');
 
+CREATE TABLE promotion 
+(Gift  varchar2(15), 
+ Minretail number(5,2), 
+ Maxretail number(5,2)); 
+ 
+INSERT into promotion 
+ VALUES ('BOOKMARKER', 0, 12); 
+INSERT into promotion 
+ VALUES ('BOOK LABELS', 12.01, 25); 
+INSERT into promotion 
+ VALUES ('BOOK COVER', 25.01, 56); 
+INSERT into promotion 
+ VALUES ('FREE SHIPPING', 56.01, 999.99); 
 
 insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Raimund', 'Stegell', '86-(938)743-3259', 'rstegell0@wikimedia.org', 'OFFDUTY', 'S12');			
 insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Auberon', 'Davidai', '86-(215)159-3756', 'adavidai1@salon.com', 'SICK', 'S13');

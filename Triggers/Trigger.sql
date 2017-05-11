@@ -133,32 +133,6 @@ BEGIN
 END;
 
 
-/* PostalCode Id trigger */
------------------------------------------------------
-CREATE OR REPLACE TRIGGER AFTER_Mail_INSERTORUPDATE
- AFTER INSERT OR UPDATE
- ON MAIL
- for each row
- DECLARE
-  type ids is varray(1000) of varchar(64);
-  postalcodes ids;
-  alreadyInserted number(4,0) := 0;
-BEGIN
-   DBMS_OUTPUT.PUT_LINE(:new.RouteId);
-   DBMS_OUTPUT.PUT_LINE(:new.PostalCode);
- 
-  select postalcode bulk collect into postalcodes FROM postalcodes where postalcode = :new.PostalCode;
-  FOR i IN 1..postalcodes.COUNT LOOP
-    if postalcodes(i) = :new.postalcode then
-        alreadyInserted := 1;
-    end if;
-  END loop;
-  if alreadyInserted = 0 then
-    INSERT INTO postalcodes VALUES(NULL, :new.Postalcode);
-    end if;
-END;
-
-
 ----------------------------
 CREATE OR REPLACE TRIGGER before_mail_insert
  BEFORE INSERT
@@ -192,4 +166,46 @@ BEGIN
     END IF;
   End IF;
   :new.MailId := 'M'||:New.MailId;
+END;
+
+
+CREATE OR REPLACE PROCEDURE SendToPostal(tempPostalCode IN varchar2, tempRegistration IN varchar2, tempReturnAddress IN varchar2, tempMailId IN varchar2)
+AS
+  routePostFix VARCHAR2(64);
+  tempCountry VARCHAR2(64);
+  tempSentTo VARCHAR2(64);
+  role_xcep EXCEPTION;
+  PRAGMA EXCEPTION_INIT( role_xcep, -20001 );
+BEGIN
+  IF tempReturnAddress IS NULL THEN
+    IF tempReturnAddress = 'Registered' THEN
+      DBMS_OUTPUT.PUT_LINE('Error: Registered mail must have a return address');
+      raise role_xcep;
+   END IF;
+   END IF;
+  IF LENGTH(tempPostalCode) = 7 THEN
+    IF substr(tempPostalCode, 1, 3) = 'H4J' OR substr(tempPostalCode, 1, 3) = 'H7T' THEN
+      routePostFix := substr(tempPostalCode, 5, 1);
+      tempCountry := 'local';
+      INSERT INTO postalcode (postalCode, routeID) VALUES (tempPostalCode, ('R'||routePostFix));
+      UPDATE MAIL SET Country = tempCountry WHERE postalCode = tempPostalCode;
+    END IF;
+  ELSE
+    IF LENGTH(tempPostalCode) = 5 THEN
+      tempCountry := 'us';
+      tempSentTo := 'sent to airport';
+      UPDATE MAIL
+      SET Country = tempCountry,
+          SentTo = tempSentTo
+      WHERE postalCode = tempPostalCode;
+    ELSIF LENGTH(tempPostalCode) > 5 THEN
+      tempCountry := 'international';
+      tempSentTo := 'sent to airport';
+      UPDATE MAIL
+      SET Country = tempCountry,
+          SentTo = tempSentTo
+      WHERE postalCode = tempPostalCode;
+    END IF;
+  END IF;
+        UPDATE MAIL SET mailId = 'M'||tempMailId WHERE mailId = tempMailId;
 END;

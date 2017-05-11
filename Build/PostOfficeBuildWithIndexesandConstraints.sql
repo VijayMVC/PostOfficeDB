@@ -254,16 +254,7 @@ ALTER TABLE Credentials ADD CONSTRAINT Credentials_Employees
 ALTER TABLE Employees ADD CONSTRAINT Employees_Schedule
     FOREIGN KEY (ScheduleId)
     REFERENCES Schedule (ScheduleId);
-    
--- Reference: MailId_Postalcode (table: Mail)
-ALTER TABLE Mail ADD CONSTRAINT MailId_Postalcode
-    FOREIGN KEY (PostalCode)
-    REFERENCES Postalcode (PostalCode);
 
--- Reference: Mail_MailId_PK_MailRoutes (table: Mail)
-ALTER TABLE Mail ADD CONSTRAINT Mail_MailId_PK_MailRoutes
-    FOREIGN KEY (RouteId)
-    REFERENCES Routes (RouteId);
 
 -- Reference: PostMasters_Employees (table: PostMasters)
 ALTER TABLE PostMasters ADD CONSTRAINT PostMasters_Employees

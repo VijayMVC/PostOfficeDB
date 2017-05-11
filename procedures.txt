@@ -1,8 +1,3 @@
-/* Find first free replacement */
-CREATE OR REPLACE PROCEDURE FindReplacement
-
-/* check if mail is registered and require return address */
-CREATE OR REPLACE TRIGGER BEFORE_INSERT_GETREGISTEREDMAILADDRESS
 
 /* find buildingNum from schedule and get contact info for manager/clerk */
 CREATE OR REPLACE PROCEDURE FindContactInfo
@@ -10,20 +5,13 @@ CREATE OR REPLACE PROCEDURE FindContactInfo
 /* If insert is for manager/clerk, require building Num */
 CREATE OR REPLACE TRIGGER BEFORE_SCHEDULE_REQUIREBUILDINGNO
 
-/* Automatically create routes based on postal code, add postal code to list */
-CREATE OR REPLACE PROCEDURE CREATEROUTES
-
-/* Find free vehicle for carrier to use */
-CREATE OR REPLACE PROCEDURE GETFREEVEHICLE
-
+--jon
 /* Use algorithm provided to get shipping cost */
 CREATE OR REPLACE PROCEDURE GETSHIPPINGCOST
 
-/* Use algorithm provided to send to neighboring facility */
-CREATE OR REPLACE PROCEDURE SENDTONEIGHBORFACILITIY
-
+--me
 /* Find all mail based on route, postal code, address or name of recipient or sender */
 CREATE OR REPLACE PROCEDURE GETMAIL
-
+--me
 /* View the average amount of time it takes for a route to be completed. */
 CREATE OR REPLACE PROCEDURE GETAVERAGETIME
