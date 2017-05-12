@@ -1,0 +1,22 @@
+
+---immediately upon loggin in should see a list of all (non-empty) routes that do not have 
+-- either a truck or a carrier asssigned to them for today or tomorrow
+CREATE OR REPLACE PROCEDURE GetMailToDeliverByPCode(cID in varchar2,pCode in varchar2,csr OUT SYS_REFCURSOR) as  
+BEGIN
+  open csr for
+  select routeid, mailid, deliveryaddress from carrier 
+  join postalcode using(routeid)
+  join mail using(postalcode)
+where employeeid = cId and postalcode = pCode;
+EXCEPTION
+   WHEN NO_DATA_FOUND then 
+    	dbms_output.put_line('No Mail for you to deliver '||cID);
+END;
+create or replace function GetMailToDeliverByPCodeTest(cID IN varchar, pCode in varchar) RETURN sys_refcursor
+ as
+ rc sys_refcursor;
+ begin
+ GetMailToDeliverByPCode(cID,pCode, rc);
+ return rc;
+ end;		
+select GetMailToDeliverByPCodeTest('CA1','H7T 3R4') from dual;

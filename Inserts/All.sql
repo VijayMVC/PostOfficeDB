@@ -41,26 +41,35 @@ insert into VehicleStatus (VehicleStatusId, Name) values ('AVAIL', 'AVAILABLE');
 insert into VehicleStatus (VehicleStatusId, Name) values ('DECOM', 'DE-COMMISSIONED');
 insert into VehicleStatus (VehicleStatusId, Name) values ('INUSE', 'IN-USE');
 
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E8E FE6', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E8E FE6', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'A2A CD3', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B6A CC1', 'AVAIL');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B8B CE2', 'INUSE');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D2A FA6', 'INUSE');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E7D AA7', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B8B CE2', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D2A FA6', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E7D AA7', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E3B EB4', 'AVAIL');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D2A DF8', 'DECOM');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D2A DF8', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'F1B FF2', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'F4F DE2', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B5D EE9', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'A8C BE6', 'AVAIL');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B9D EF7', 'DECOM');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D1A AE5', 'DECOM');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D9C BC6', 'DECOM');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E0F CD3', 'DECOM');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'C3A FF3', 'DECOM');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E3A CF5', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'B9D EF7', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D1A AE5', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D9C BC6', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E0F CD3', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'C3A FF3', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E3A CF5', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DD1', 'AVAIL');
-insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E8E CA6', 'INUSE');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'E8E CA6', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DD1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DF1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DG1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DH1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DI1', 'AVAIL');
+insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DJ1', 'AVAIL');
+
+
+UPDATE vehicles set vehiclestatusid = 'AVAIL' where vehiclestatusid = 'INUSE';
 
 insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:20 AM', '6:41 PM');
 insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:10 AM', '6:30 PM');

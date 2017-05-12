@@ -28,7 +28,7 @@ CREATE TABLE Building (
 -- Table: Carrier
 CREATE TABLE Carrier (
     EmployeeId varchar2(64)  NOT NULL,
-    RouteId varchar2(64)  NOT NULL,
+    RouteId varchar2(64) ,
     VehicleId varchar2(64)  NOT NULL,
     BuildingId varchar2(64)  NOT NULL,
     CONSTRAINT Carrier_pk PRIMARY KEY (EmployeeId)
@@ -217,6 +217,9 @@ ALTER TABLE Building ADD CONSTRAINT Building_Employees
 ALTER TABLE Carrier ADD CONSTRAINT Carrier_Building
     FOREIGN KEY (BuildingId)
     REFERENCES Building (BuildingId);
+
+    
+    
 
 -- Reference: Carrier_Employees (table: Carrier)
 ALTER TABLE Carrier ADD CONSTRAINT Carrier_Employees

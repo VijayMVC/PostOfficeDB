@@ -5,13 +5,7 @@ CREATE OR REPLACE PROCEDURE FindContactInfo
 /* If insert is for manager/clerk, require building Num */
 CREATE OR REPLACE TRIGGER BEFORE_SCHEDULE_REQUIREBUILDINGNO
 
---jon
-/* Use algorithm provided to get shipping cost */
-CREATE OR REPLACE PROCEDURE GETSHIPPINGCOST
 
---me
-/* Find all mail based on route, postal code, address or name of recipient or sender */
-CREATE OR REPLACE PROCEDURE GETMAIL
---me
+
 /* View the average amount of time it takes for a route to be completed. */
 CREATE OR REPLACE PROCEDURE GETAVERAGETIME

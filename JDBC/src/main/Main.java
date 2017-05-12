@@ -32,8 +32,15 @@ public class Main {
 		try{
 
 			con = getConnection();
+			
+			//Carriers
 			String cID = "CA1";
-			Carrier.getCarrierRouteAndTruck(cID);
+			//Carrier.getCarrierRouteAndTruck(cID);
+			//Carrier.getMailToDeliverByPostalCode(cID, "H7T 3R4");
+			//Carrier.getMailToDeliverByAddress(cID, "79 Trailsway Circle");
+			//Carrier.markMailStatus(cID, "M12", "delivered");
+			
+			GetStatusOfMail("M12");
 		}
 		catch (SQLException s){
 			print(s.getMessage());
@@ -48,6 +55,67 @@ public class Main {
 			conn = DriverManager.getConnection(sqlUrl,"system", "#Oraclepassword92");
 			print("Connected to database");
 			return conn;
+		}
+	
+	public static void GetStatusOfRoute(String rID){
+			
+			String select = "SELECT * from routes where routeid = + \'" + rID+ "\'";
+			try {
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(select);
+				while (rs.next()){
+					print("Route ID: " + rs.getString("mailid"));
+					print("Routename:\t" + rs.getString("registration"));
+					print("LastDelivered:\t" + rs.getString("postalcode"));
+					print("RouteStatus:\t" + rs.getString("returnaddress"));
+					print("============================");
+					print("");
+					
+					
+				}
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+		}
+		
+		public static void GetStatusOfMail(String mID){
+			
+			String select = "SELECT * from mail where mailid = + \'" + mID+ "\'";
+			try {
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(select);
+				while (rs.next()){
+					print("Mail ID: " + rs.getString("mailid"));
+					print("Registration:\t" + rs.getString("registration"));
+					print("PostalCode:\t" + rs.getString("postalcode"));
+					print("ReturnAddress:\t" + rs.getString("returnaddress"));
+					print("DeliveryAddress: " + rs.getString("deliveryaddress"));
+					print("Weight:\t" + rs.getInt("weight"));
+					print("TotalPostage:\t" + rs.getString("totalpostage"));
+					print("DeliveryStatus:\t" + rs.getString("deliverystatus"));
+					print("SenderName:\t" + rs.getString("sendername"));
+					print("Country:\t" + rs.getString("country"));
+					print("SentTo:\t" + rs.getString("sentto"));
+					print("============================");
+					print("");
+					
+					
+				}
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			
 		}
 		
 		public static void showPrompt(){
