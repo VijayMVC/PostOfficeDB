@@ -34,13 +34,18 @@ public class Main {
 			con = getConnection();
 			
 			//Carriers
-			String cID = "CA1";
+			String cID = "CA14";
 			//Carrier.getCarrierRouteAndTruck(cID);
+			Carrier.getMailToDeliver(cID);
 			//Carrier.getMailToDeliverByPostalCode(cID, "H7T 3R4");
 			//Carrier.getMailToDeliverByAddress(cID, "79 Trailsway Circle");
 			//Carrier.markMailStatus(cID, "M12", "delivered");
+			//GetStatusOfMail("M12");
 			
-			GetStatusOfMail("M12");
+			// PostMasters
+			//PostMaster.GetNonEmptyRoutes();
+			//PostMaster.ViewAverageRouteTime();
+			
 		}
 		catch (SQLException s){
 			print(s.getMessage());
@@ -57,6 +62,31 @@ public class Main {
 			return conn;
 		}
 	
+	
+		public static void GetEmployeeInfo(String eID){
+			
+			String select = "SELECT * from employees where employeeid= + \'" + eID+ "\'";
+			try {
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(select);
+				while (rs.next()){
+					
+					print("");
+					
+					
+				}
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+		}
+		
+		
 	public static void GetStatusOfRoute(String rID){
 			
 			String select = "SELECT * from routes where routeid = + \'" + rID+ "\'";

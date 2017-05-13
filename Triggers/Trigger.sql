@@ -5,9 +5,14 @@ before INSERT
    FOR EACH ROW
 
 DECLARE
+    TYPE routeN IS VARRAY(1000) of VARCHAR2(64);
+    routes routeN;
+    tempSID varchar2(64);
    role_xcep EXCEPTION;
    PRAGMA EXCEPTION_INIT( role_xcep, -20001 );
+   
 BEGIN
+  SELECT routeId BULK COLLECT INTO routes FROM ROUTES ORDER BY dbms_random.value; 
    DBMS_OUTPUT.PUT_LINE('Entered employees before insert trigger');
    -- Get EmployeeId
     IF :new.Role  = 'PostMaster' then
@@ -33,8 +38,16 @@ CREATE OR REPLACE TRIGGER Routes_before_insert
 BEFORE INSERT
    ON Routes
    FOR EACH ROW
+  declare 
+   TYPE scheduleIds IS VARRAY(1000) of VARCHAR2(64);
+   sIDS scheduleIds;
 BEGIN
   :new.RouteId :=('R' || :new.RouteId);
+  -- should be this or is between value for current_date and current_date + 3 or something
+   SELECT scheduleid BULK COLLECT INTO sIDS FROM schedule ORDER BY dbms_random.value;
+  if sIDS.Count > 0 then
+    :new.ScheduleId := sids(1);
+  end if;
 END;
 
 /* Generate VehicleId */
@@ -61,6 +74,7 @@ DECLARE
    buildings buildingN;
    routes routeN;
    vehicles vehicleN;
+  tempSID varchar2(64);
 BEGIN
     /* If the role is PostMaster then we want to insert them into buildings table */
     DBMS_OUTPUT.PUT_LINE('Entered employee after trigger insert');
@@ -68,7 +82,7 @@ BEGIN
       INSERT INTO BUILDING (BuildingId, EmployeeId, Phone) VALUES (BuildingIdSequence.NEXTVAL, :new.EmployeeId, :new.Phone);
     END IF;
     SELECT buildingID BULK COLLECT INTO buildings FROM BUILDING ORDER BY dbms_random.value;
-    SELECT routeId BULK COLLECT INTO routes FROM ROUTES ORDER BY dbms_random.value; 
+    SELECT routeId BULK COLLECT INTO routes FROM postalcode ORDER BY dbms_random.value; 
     SELECT vehicleId BULK COLLECT INTO vehicles FROM VEHICLES WHERE VehicleStatusId = 'AVAIL' ORDER BY dbms_random.value; 
 
     IF :new.Role  = 'PostMaster' then
@@ -86,6 +100,7 @@ BEGIN
         IF :new.Availability = 'ONDUTY' THEN
        /*Insert into carrier */
           INSERT INTO CARRIER (EmployeeId, RouteId, VehicleId, BuildingId) VALUES (:new.EmployeeId, routes(1), vehicles(1), buildings(1));
+         
         ELSE
           INSERT INTO CARRIER (EmployeeId, RouteId, VehicleId, BuildingId) VALUES (:new.EmployeeId, null, null, buildings(1));
         END IF;
@@ -101,10 +116,12 @@ DECLARE
   vId VARCHAR2(64);
 BEGIN
   /* Get first instance of an "AVAIL" (available) vehicle */
-  SELECT vehicleId INTO vId FROM vehicles WHERE vehicleStatusId = 'AVAIL' AND ROWNUM = 1;
+  SELECT vehicleId INTO vId FROM vehicles WHERE vehicleStatusId = 'AVAIL' and rownum = 1;
+  if vId is not null then
   :new.VehicleId := vId;
+   UPDATE vehicles SET VehicleStatusId = 'INUSE' where vehicleId = vId;
+  end if;
   /* Update vehicle status to now show INUSE */
-  UPDATE vehicles SET VehicleStatusId = 'INUSE' where vehicleId = vId;
 END;
 
 /* Reset all vehicles to AVAIL when route is finished */
@@ -122,7 +139,7 @@ BEGIN
 
   /* Use routeId to find vehicleId from carrier table */
   SELECT vehicleId INTO vID FROM carrier WHERE routeId = rId;
-
+  
   /* Use vehicleId to set vehicle status to AVAIL */
   UPDATE vehicles SET vehicleStatusId = 'AVAIL' where vehicleId = vId;
  END IF;

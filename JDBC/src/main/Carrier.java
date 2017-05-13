@@ -15,8 +15,7 @@ public class Carrier {
 	public Carrier() {
 	}
 	
-	
-	public static void findReplcement(String cID) {
+	public static void findReplacement(String cID) {
 		if (cID.isEmpty() )
 			throw new IllegalArgumentException("The parameters cannot be empty");
 		try {

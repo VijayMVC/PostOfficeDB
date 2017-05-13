@@ -11,6 +11,7 @@ DROP TABLE "ROUTES" CASCADE CONSTRAINTS;
 DROP TABLE "VEHICLES" CASCADE CONSTRAINTS;                      
 DROP TABLE "VEHICLESTATUS" CASCADE CONSTRAINTS;                 
 DROP TABLE "EMPLOYEES" CASCADE CONSTRAINTS;
+DROP TABLE PRICE CASCADE CONSTRAINTS;
 */
 
 -- Created by Vertabelo (http://vertabelo.com)
@@ -42,6 +43,13 @@ CREATE TABLE Clerk (
     BuildingId varchar2(64)  NOT NULL,
     CONSTRAINT Clerk_pk PRIMARY KEY (EmployeeId)
 ) ;
+
+CREATE TABLE PRICE (
+  MIN NUMBER(38),
+  MAX NUMBER(38),
+  Country VARCHAR2(64),
+  Price NUMBER(38,3)
+);
 
 -- Table: Credentials
 CREATE TABLE Credentials (
@@ -98,20 +106,24 @@ CREATE TABLE Postalcode (
     CONSTRAINT Postalcode_pk PRIMARY KEY (PostalCode)
 ) ;
 
--- Table: Routes
 CREATE TABLE Routes (
     RouteId varchar2(64)  NOT NULL,
     RouteName varchar2(64)  NOT NULL,
     LastDelivered date  NOT NULL,
+    ScheduleId VARCHAR2(64),
     RouteStatus varchar2(64)  NOT NULL CHECK (RouteStatus = 'Started' OR RouteStatus = 'Completed' OR RouteStatus = 'Incomplete'),
     CONSTRAINT Routes_Route_pk PRIMARY KEY (RouteId)
 ) ;
 
--- Table: Schedule
+ALTER TABLE Routes ADD CONSTRAINT Routes_Schedule
+    FOREIGN KEY (ScheduleId)
+    REFERENCES Schedule (ScheduleId);
+
 CREATE TABLE Schedule (
     ScheduleId varchar2(64)  NOT NULL,
     StartTime varchar2(64)  NOT NULL,
     EndTime varchar2(64)  NOT NULL,
+    DeliveryDate DATE,
     CONSTRAINT Schedule_pk PRIMARY KEY (ScheduleId)
 );
 
@@ -145,6 +157,7 @@ DROP INDEX Routes_LastDelivered_index;
 DROP INDEX VehicleId_index;
 DROP INDEX VehicleStatus_index;
 DROP INDEX VehicleStatusId_index;
+DROP INDEX DeliveryDate_index;
 */
 
 CREATE INDEX BuildingId_index 
@@ -155,6 +168,10 @@ on Building
 CREATE INDEX CarrierId_index 
 on Carrier 
 (EmployeeId ASC);
+
+CREATE INDEX DeliveryDate_index 
+on Schedule
+(DeliveryDate desc);
 
 CREATE INDEX EmployeesId_index 
 on Employees 
@@ -218,7 +235,9 @@ ALTER TABLE Carrier ADD CONSTRAINT Carrier_Building
     FOREIGN KEY (BuildingId)
     REFERENCES Building (BuildingId);
 
-    
+ALTER TABLE Routes ADD CONSTRAINT Routes_Schedule
+    FOREIGN KEY (ScheduleId)
+    REFERENCES Schedule (ScheduleId);   
     
 
 -- Reference: Carrier_Employees (table: Carrier)

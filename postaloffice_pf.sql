@@ -1,9 +1,12 @@
---carriers must be able to mark themselves as unavailable
- UPDATE employees set availability = 'availabiilitystatusfromuser'
- where employeeid = 'his/hers employee id';
 
-
-
+create or replace function GetMailToDeliverByAddressTest(cID IN varchar, address in varchar) RETURN sys_refcursor
+ as
+ rc sys_refcursor;
+ begin
+ GetMailToDeliverByAddress(cID,address, rc);
+ return rc;
+ end;		
+select GetMailToDeliverByAddressTest('CA1','79 Trailsway Circle') from dual;
 
 CREATE OR REPLACE PROCEDURE MarkRouteStatus(cID in varchar2,rID in varchar2, status IN varchar2) as
  tempRouteID varchar2(64);
@@ -21,10 +24,7 @@ EXCEPTION
    WHEN NO_DATA_FOUND then 
     	dbms_output.put_line('No route updated '||rID);
 END;
-		
 Execute MarkRouteStatus('CA1','R3','Started') ;
-
-
 
 --mark each individual parcel or letter as delivered
 CREATE OR REPLACE PROCEDURE MarkMailStatus(cID in varchar2,mId in varchar2, status IN varchar2) as
@@ -92,7 +92,6 @@ create or replace function GetMailToDeliverByPCodeTest(cID IN varchar, pCode in 
  end;		
 select GetMailToDeliverByPCodeTest('CA1','H7T 3R4') from dual;
 
-
 -- get mail route and truck they are assigned to
 CREATE OR REPLACE PROCEDURE GetMailToDeliver(cID in varchar2,csr OUT SYS_REFCURSOR) as  
 BEGIN
@@ -117,10 +116,6 @@ create or replace function GetMailToDeliverTest(cID IN varchar) RETURN sys_refcu
  end;		
 select GetMailToDeliverTest('CA1') from dual;
 
-
-
-
-
 -- get mail route and truck they are assigned to
 CREATE OR REPLACE PROCEDURE GetRouteAndTruck(cID in varchar2,csr OUT SYS_REFCURSOR) as  
 BEGIN
@@ -144,7 +139,7 @@ create or replace function GetRouteAndTruckTest(cID IN varchar) RETURN sys_refcu
 select GetRouteAndTruckTest('CA1') from dual;
 
 /* Find all mail postal code, */
-CREATE OR REPLACE PROCEDURE GetMailByAddress2(address in varchar2, csr OUT SYS_REFCURSOR) AS
+CREATE OR REPLACE PROCEDURE GetMailByAddress(address in varchar2, csr OUT SYS_REFCURSOR) AS
 BEGIN
  open csr FOR
   select mailid, routeid,postalcode, weight from mail
@@ -165,9 +160,6 @@ END;
  end;		
 select GetMailByAddressTest('01835 Eagle Crest Parkway') from dual;
 
-  select mailid, routeid,postalcode, weight from mail
-  join postalcode using(postalcode)
-  where deliveryaddress = '01835 Eagle Crest Parkway';
 /* Find all mail postal code, */
 CREATE OR REPLACE PROCEDURE GetMailByPostalCode(pCode in varchar2, csr OUT SYS_REFCURSOR) as
 BEGIN
@@ -180,7 +172,6 @@ EXCEPTION
    WHEN NO_DATA_FOUND then 
     	dbms_output.put_line('No Mail for this postalcode'||pCode);
 END;
-
 create or replace function GetMailByPostalCodeTest(pCode IN varchar) RETURN sys_refcursor
  as
  rc sys_refcursor;
@@ -189,7 +180,6 @@ create or replace function GetMailByPostalCodeTest(pCode IN varchar) RETURN sys_
  return rc;
  end;		
 select GetMailByPostalCodeTest('H4J 6S7') from dual;
-
 
 /* Find all mail based on route,*/
 CREATE OR REPLACE PROCEDURE GetCarrierMailByRoute(rID in varchar2, csr OUT SYS_REFCURSOR) as  
@@ -205,8 +195,6 @@ EXCEPTION
    WHEN NO_DATA_FOUND then 
     	dbms_output.put_line('No Mail for this route'||rID);
 END;
-execute GetCarrierMailByRoute('R1');
-
 create or replace function GetMailByRouteIDTest(pCode IN varchar) RETURN sys_refcursor
  as
  rc sys_refcursor;
@@ -215,7 +203,7 @@ create or replace function GetMailByRouteIDTest(pCode IN varchar) RETURN sys_ref
  return rc;
  end;		
 select GetMailByRouteIDTest('R1') from dual;
-
+-- find replacement and update their availability and availability of replacement
 CREATE or REPLACE Procedure FindReplacement(empId IN varchar2)
 AS
     TYPE varchar64_va IS VARRAY(64) OF VARCHAR2(64);
@@ -226,8 +214,7 @@ AS
 BEGIN
   select employeeid bulk collect into employeeIds from employees 
   where availability = 'AVAILABLE';
-  
-  if employeeIds.COUNT > 1 then
+    if employeeIds.COUNT > 1 then
     --update employee that is calling in sick
        if substr(empId, 1,2) = 'CA' then
        select routeid into tempRouteId from carrier where employeeid = empId;
@@ -241,15 +228,13 @@ BEGIN
        UpdateAvailability(empId, 'UNAVAILABLE');
   end if;
 END;
-
-		execute FindCarrierReplacement('CA3');
-    select substr('CA3', 1,2) from dual;
+execute FindCarrierReplacement('CA3');
+select substr('CA3', 1,2) from dual;
 
 create or replace procedure UpdateAvailability(empId in varchar2, ablty in varchar2) as
 --variables
 emp varchar2(64);
 BEGIN
-
 SELECT employeeid INTO emp from employees where employeeid = empid;
   if emp is not null then
        UPDATE employees set availability = ablty
@@ -261,5 +246,4 @@ EXCEPTION
       
 END;
 execute UpdateAvailability('CAA1', 'Available' );
-
-  select employeeid from employees where employeeid = 'CA1';
+select employeeid from employees where employeeid = 'CA1';

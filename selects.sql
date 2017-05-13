@@ -258,6 +258,32 @@ where mailid = 'mailidfrom this select statement above';
 select nvl (substr(postalcode, 4, 2),null) as endofpostalcode from mail;
 
  
+select * from routes 
+join postalcode using(routeid)
+left join carrier using(routeid)
+join employees using(employeeid)
+join schedule using(scheduleid)
+where employeeid is null;
+
+select * from routes 
+join postalcode using(routeid)
+left join carrier using(routeid)
+join schedule using(scheduleid)
+where employeeid is null and
+date = TO_DATE(current_date,'format') and date = TO_DATE(current_date+1,'format');
+
+
+select avg(deliverydate) from 
+  (select deliverydate from schedule 
+  join routes using(scheduleid)
+  where routestatus = 'Completed')
+  group by routeid;
+  
+
+select vehicleid from vehicles
+where vehicleid = 'vID'
+
+--update vehicles set vehiclestatusid = 'status';
 
 
 

@@ -1,3 +1,4 @@
+/*
 DROP TABLE "BUILDING" CASCADE CONSTRAINTS;                      
 DROP TABLE "CREDENTIALS" CASCADE CONSTRAINTS;                   
 DROP TABLE "MAIL" CASCADE CONSTRAINTS;                          
@@ -12,30 +13,51 @@ DROP TABLE "VEHICLESTATUS" CASCADE CONSTRAINTS;
 DROP TABLE "EMPLOYEES" CASCADE CONSTRAINTS;
 SELECT 'DROP TABLE "' || table_name || '" CASCADE CONSTRAINTS;' FROM user_tables;
 SELECT 'TRUNCATE TABLE "' || table_name || '";' FROM user_tables;
+*/
+
+insert into Schedule values (ScheduleIdSequence.NEXTVAL, '9:20 AM', '6:41 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:10 AM', '6:30 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:04 AM', '6:28 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:26 AM', '6:50 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:35 AM', '5:31 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:08 AM', '6:51 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:11 AM', '6:01 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:23 AM', '5:40 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:55 AM', '6:48 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:20 AM', '6:16 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:58 AM', '6:33 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:48 AM', '5:37 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:01 AM', '5:04 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:28 AM', '6:20 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:37 AM', '6:24 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:37 AM', '5:22 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:20 AM', '6:00 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:27 AM', '5:43 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '8:11 AM', '5:41 PM',CURRENT_DATE);
+insert into Schedule (ScheduleId, StartTime, EndTime, deliverydate) values (ScheduleIdSequence.NEXTVAL, '9:53 AM', '6:16 PM',CURRENT_DATE);
 
 
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'nonummy', to_date('2017-04-28', 'yyyy-mm-dd'), null  , 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'libero', to_date('2017-04-28', 'yyyy-mm-dd'),  null  , 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'morbi', to_date('2017-04-28', 'yyyy-mm-dd'),   null  , 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'parturient', to_date('2017-04-28', 'yyyy-mm-dd'),null, 'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'morbi', to_date('2017-04-28', 'yyyy-mm-dd'),  null   , 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'donec', to_date('2017-04-28', 'yyyy-mm-dd'),  null   , 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'augue', to_date('2017-04-28', 'yyyy-mm-dd'),  null   , 'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'semper', to_date('2017-04-28', 'yyyy-mm-dd'), null   ,  'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'et', to_date('2017-04-28', 'yyyy-mm-dd'),     null   ,   'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'id', to_date('2017-04-28', 'yyyy-mm-dd'),     null   ,   'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'curabitur', to_date('2017-04-28', 'yyyy-mm-dd'), null,    'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'magna', to_date('2017-04-28', 'yyyy-mm-dd'),     null,    'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'molestie', to_date('2017-04-28', 'yyyy-mm-dd'),  null,    'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'fringilla', to_date('2017-04-28', 'yyyy-mm-dd'), null,    'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'nec', to_date('2017-04-28', 'yyyy-mm-dd'),       null,     'Incomplete');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'non', to_date('2017-04-28', 'yyyy-mm-dd'),       null,     'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'odio', to_date('2017-04-28', 'yyyy-mm-dd'),      null,      'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'donec', to_date('2017-04-28', 'yyyy-mm-dd'),     null,       'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'adipiscing', to_date('2017-04-28', 'yyyy-mm-dd'),null,        'Completed');
+insert into Routes (RouteId, RouteName, LastDelivered,scheduleid, RouteStatus) values (RouteIdSequence.NEXTVAL, 'tempus', to_date('2017-04-28', 'yyyy-mm-dd'),    null,         'Incomplete');
 
-/*Insert mock data in proper order */
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'nonummy', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'libero', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'morbi', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'parturient', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'morbi', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'donec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'augue', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'semper', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'et', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'id', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'curabitur', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'magna', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'molestie', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'fringilla', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'nec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'non', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'odio', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'donec', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'adipiscing', to_date('2016-04-28', 'yyyy-mm-dd'), 'Completed');
-insert into Routes (RouteId, RouteName, LastDelivered, RouteStatus) values (RouteIdSequence.NEXTVAL, 'tempus', to_date('2016-04-28', 'yyyy-mm-dd'), 'Incomplete');
 
 insert into VehicleStatus (VehicleStatusId, Name) values ('AVAIL', 'AVAILABLE');
 insert into VehicleStatus (VehicleStatusId, Name) values ('DECOM', 'DE-COMMISSIONED');
@@ -68,43 +90,7 @@ insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequ
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DI1', 'AVAIL');
 insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequence.NEXTVAL, 'D4E DJ1', 'AVAIL');
 
-
 UPDATE vehicles set vehiclestatusid = 'AVAIL' where vehiclestatusid = 'INUSE';
-
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:20 AM', '6:41 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:10 AM', '6:30 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:04 AM', '6:28 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:26 AM', '6:50 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:35 AM', '5:31 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:08 AM', '6:51 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:11 AM', '6:01 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:23 AM', '5:40 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:55 AM', '6:48 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:20 AM', '6:16 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:58 AM', '6:33 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:48 AM', '5:37 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:01 AM', '5:04 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:28 AM', '6:20 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:37 AM', '6:24 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:37 AM', '5:22 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:20 AM', '6:00 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:27 AM', '5:43 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '8:11 AM', '5:41 PM');
-insert into Schedule (ScheduleId, StartTime, EndTime) values (ScheduleIdSequence.NEXTVAL, '9:53 AM', '6:16 PM');
-
-CREATE TABLE promotion 
-(Gift  varchar2(15), 
- Minretail number(5,2), 
- Maxretail number(5,2)); 
- 
-INSERT into promotion 
- VALUES ('BOOKMARKER', 0, 12); 
-INSERT into promotion 
- VALUES ('BOOK LABELS', 12.01, 25); 
-INSERT into promotion 
- VALUES ('BOOK COVER', 25.01, 56); 
-INSERT into promotion 
- VALUES ('FREE SHIPPING', 56.01, 999.99); 
 
 insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Raimund', 'Stegell', '86-(938)743-3259', 'rstegell0@wikimedia.org', 'OFFDUTY', 'S12');			
 insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Auberon', 'Davidai', '86-(215)159-3756', 'adavidai1@salon.com', 'SICK', 'S13');
@@ -168,5 +154,24 @@ insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddre
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 5L6', '92 Killdeer Crossing', '747 Grayhawk Circle', 0, 122, 'delivered', 'Ariella Shotboult', 'Carl Tappor');
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 2W6', '50820 Anhalt Court', '24 Everett Plaza', 27, 99, 'undeliverable', 'Ardella Meni', 'Lambert Huggill');
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 6J9', '4965 Di Loreto Point', '9361 Homewood Avenue', 21, 54, 'undeliverable', 'Kial Duckit', 'Blake Gilliat');
+
+INSERT INTO price (MIN, MAX, country, price) VALUES (0, 30, 'local', 0.85);
+INSERT INTO price (MIN, MAX, country, price) VALUES (0, 30, 'us', 1.20);
+INSERT INTO price (MIN, MAX, country, price) VALUES (0, 30, 'international', 2.50);
+INSERT INTO price (MIN, MAX, country, price) VALUES (31, 50, 'local', 1.20);
+INSERT INTO price (MIN, MAX, country, price) VALUES (31, 50, 'us', 1.8);
+INSERT INTO price (MIN, MAX, country, price) VALUES (31, 50, 'international', 3.60);
+INSERT INTO price (MIN, MAX, country, price) VALUES (51, 100, 'local', 1.80);
+INSERT INTO price (MIN, MAX, country, price) VALUES (51, 100, 'us', 2.95);
+INSERT INTO price (MIN, MAX, country, price) VALUES (51, 100, 'international', 5.90);
+INSERT INTO price (MIN, MAX, country, price) VALUES (101, 200, 'local', 2.95);
+INSERT INTO price (MIN, MAX, country, price) VALUES (101, 200, 'us', 5.15);
+INSERT INTO price (MIN, MAX, country, price) VALUES (101, 200, 'international', 10.30);
+INSERT INTO price (MIN, MAX, country, price) VALUES (201, 500, 'local', 5.05);
+INSERT INTO price (MIN, MAX, country, price) VALUES (201, 500, 'us', 10.30);
+INSERT INTO price (MIN, MAX, country, price) VALUES (201, 500, 'international', 20.60);
+INSERT INTO price (MIN, MAX, country, price) VALUES (501, 1000, 'local', 7.05);
+INSERT INTO price (MIN, MAX, country, price) VALUES (501, 1000, 'us', 12.30);
+INSERT INTO price (MIN, MAX, country, price) VALUES (501, 1000, 'international', 30.60);
 
 UPDATE SCHEDULE SET SCHEDULEID = 'S1' WHERE SCHEDULEID = 'HOLYSHITTHISWORKS';

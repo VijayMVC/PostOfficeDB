@@ -25,9 +25,7 @@ CREATE SEQUENCE CaIdSequence
   START WITH 1
   INCREMENT BY 1
   CACHE 50;
-  
-  
-  
+   
 Drop sequence BuildingIdSequence;
 CREATE SEQUENCE BuildingIdSequence
   MINVALUE 1
