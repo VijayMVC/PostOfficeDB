@@ -72,7 +72,7 @@ CREATE TABLE Employees (
     or Availability='OFFDUTY' or Availability='ONVACATION' or Availability='ONDUTY'),
     CONSTRAINT Employees_EmployeesId_pk PRIMARY KEY (EmployeeId)
 );
-DROP TABLE MAIL CASCADE CONSTRAINTS;
+
 
 -- Table: Mail
 CREATE TABLE Mail (
@@ -115,9 +115,6 @@ CREATE TABLE Routes (
     CONSTRAINT Routes_Route_pk PRIMARY KEY (RouteId)
 ) ;
 
-ALTER TABLE Routes ADD CONSTRAINT Routes_Schedule
-    FOREIGN KEY (ScheduleId)
-    REFERENCES Schedule (ScheduleId);
 
 CREATE TABLE Schedule (
     ScheduleId varchar2(64)  NOT NULL,
@@ -142,87 +139,15 @@ CREATE TABLE VehicleStatus (
     CONSTRAINT VehicleStatusId PRIMARY KEY (VehicleStatusId)
 ) ;
 
-/*
-DROP INDEX BuildingId_index;
-DROP INDEX CarrierId_index;
-DROP INDEX EmployeesId_index;
-DROP INDEX Lastname_index;
-DROP INDEX Registration;
-DROP INDEX RouteId;
-DROP INDEX PostMastersId_index;
-DROP INDEX RouteId_index;
-DROP INDEX PostalCode;
-DROP INDEX Registration;
-DROP INDEX Routes_LastDelivered_index;
-DROP INDEX VehicleId_index;
-DROP INDEX VehicleStatus_index;
-DROP INDEX VehicleStatusId_index;
-DROP INDEX DeliveryDate_index;
-*/
-
-CREATE INDEX BuildingId_index 
-on Building 
-(BuildingId ASC)
-;
-
-CREATE INDEX CarrierId_index 
-on Carrier 
-(EmployeeId ASC);
-
-CREATE INDEX DeliveryDate_index 
-on Schedule
-(DeliveryDate desc);
-
-CREATE INDEX EmployeesId_index 
-on Employees 
-(EmployeeId ASC)
-;
-
-CREATE INDEX Lastname_index 
-on Employees 
-(Lastname ASC)
-;
-
-CREATE INDEX Registration 
-on Mail 
-(Registration ASC)
-;
-
-CREATE INDEX RouteId 
-on Mail 
-(RouteId ASC)
-;
-
-CREATE INDEX PostMastersId_index 
-on PostMasters 
-(EmployeeId ASC)
-;
-
-CREATE INDEX PostalCode 
-on Postalcode 
-(PostalCode ASC)
-;
-
-
-CREATE INDEX Routes_LastDelivered_index 
-on Routes 
-(LastDelivered ASC)
-;
-
-CREATE INDEX VehicleId_index 
-on Vehicles 
-(VehicleId ASC)
-;
-
-CREATE INDEX VehicleStatus_index 
-on Vehicles 
-(VehicleStatusId ASC)
-;
 
 CREATE INDEX VehicleStatusId_index 
 on VehicleStatus 
 (VechicleStatusId ASC)
 ;
+
+ALTER TABLE Routes ADD CONSTRAINT Routes_Schedule
+    FOREIGN KEY (ScheduleId)
+    REFERENCES Schedule (ScheduleId);
 
 -- foreign keys
 -- Reference: Building_Employees (table: Building)
@@ -234,12 +159,7 @@ ALTER TABLE Building ADD CONSTRAINT Building_Employees
 ALTER TABLE Carrier ADD CONSTRAINT Carrier_Building
     FOREIGN KEY (BuildingId)
     REFERENCES Building (BuildingId);
-
-ALTER TABLE Routes ADD CONSTRAINT Routes_Schedule
-    FOREIGN KEY (ScheduleId)
-    REFERENCES Schedule (ScheduleId);   
     
-
 -- Reference: Carrier_Employees (table: Carrier)
 ALTER TABLE Carrier ADD CONSTRAINT Carrier_Employees
     FOREIGN KEY (EmployeeId)
@@ -292,3 +212,74 @@ ALTER TABLE PostalCode ADD CONSTRAINT PostalCode_Routes
 ALTER TABLE Vehicles ADD CONSTRAINT Vehicles_VehicleStatus
     FOREIGN KEY (VehicleStatusId)
     REFERENCES VehicleStatus (VehicleStatusId);
+    
+    
+/*
+DROP INDEX BuildingId_index;
+DROP INDEX CarrierId_index;
+DROP INDEX EmployeesId_index;
+DROP INDEX Lastname_index;
+DROP INDEX Registration;
+DROP INDEX RouteId;
+DROP INDEX PostMastersId_index;
+DROP INDEX RouteId_index;
+DROP INDEX PostalCode;
+DROP INDEX Registration;
+DROP INDEX Routes_LastDelivered_index;
+DROP INDEX VehicleId_index;
+DROP INDEX VehicleStatus_index;
+DROP INDEX VehicleStatusId_index;
+DROP INDEX DeliveryDate_index;
+*/
+
+CREATE INDEX ClerkId_index 
+on Clerk
+(EmployeeId ASC);
+
+
+CREATE INDEX CarrierId_index 
+on Carrier 
+(EmployeeId ASC);
+
+CREATE INDEX DeliveryDate_index 
+on Schedule
+(DeliveryDate desc);
+
+
+CREATE INDEX Lastname_index 
+on Employees 
+(Lastname ASC)
+;
+
+CREATE INDEX Registration 
+on Mail 
+(Registration ASC)
+;
+
+CREATE INDEX PostMastersId_index 
+on PostMasters 
+(EmployeeId ASC)
+;
+
+CREATE INDEX PostalCode 
+on Postalcode 
+(PostalCode ASC)
+;
+
+
+CREATE INDEX Routes_LastDelivered_index 
+on Routes 
+(LastDelivered ASC)
+;
+
+CREATE INDEX VehicleId_index 
+on Vehicles 
+(VehicleId ASC)
+;
+
+CREATE INDEX VehicleStatus_index 
+on Vehicles 
+(VehicleStatusId ASC)
+;
+    
+    

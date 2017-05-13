@@ -92,28 +92,6 @@ insert into Vehicles (VehicleID, PlateNo, VehicleStatusId) values (VehicleIdSequ
 
 UPDATE vehicles set vehiclestatusid = 'AVAIL' where vehiclestatusid = 'INUSE';
 
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Raimund', 'Stegell', '86-(938)743-3259', 'rstegell0@wikimedia.org', 'OFFDUTY', 'S12');			
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Auberon', 'Davidai', '86-(215)159-3756', 'adavidai1@salon.com', 'SICK', 'S13');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Marcus', 'Risman', '86-(184)781-5870', 'mrisman2@tripadvisor.com', 'ONVACATION', 'S1');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Jacquette', 'Provest', '63-(704)823-0421', 'jprovest3@spiegel.de', 'SICK', 'S11');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Nat', 'Lovelady', '86-(707)193-6390', 'nlovelady4@unblog.fr', 'AVAILABLE', 'S5');				
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Amitie', 'O''Flaherty', '7-(515)466-0530', 'aoflaherty5@tiny.cc', 'SICK', 'S12');		
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Pattin', 'Abramovic', '963-(816)508-6897', 'pabramovic6@mit.edu', 'ONDUTY', 'S20');				
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Charo', 'Murty', '86-(258)583-7795', 'cmurty7@weebly.com', 'SICK', 'S8');				
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Gavra', 'Pascho', '385-(475)798-8943', 'gpascho8@scientificamerican.com', 'AVAILABLE', 'S20');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Claiborne', 'Tatterton', '1-(988)856-7976', 'ctatterton9@loc.gov', 'ONDUTY', 'S2');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Sheelah', 'Perotti', '249-(791)753-4945', 'sperottia@biglobe.ne.jp', 'ONVACATION', 'S3');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Ella', 'Mulloch', '380-(742)608-5800', 'emullochb@addthis.com', 'ONVACATION', 'S6');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Dori', 'Creavin', '1-(814)946-4389', 'dcreavinc@eepurl.com', 'SICK', 'S7');	
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Jaimie', 'Blainey', '241-(955)139-7698', 'jblaineyd@yandex.ru', 'AVAILABLE', 'S9');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Cordy', 'Huckabe', '86-(443)495-6420', 'chuckabee@washingtonpost.com', 'SICK', 'S15');	
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Rodie', 'Vasilyevski', '86-(970)260-4925', 'rvasilyevskif@desdev.cn', 'SICK', 'S18');		
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Gallard', 'Scotchmer', '86-(677)355-2760', 'gscotchmerg@nyu.edu', 'SICK', 'S8');			
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Sonny', 'Bevans', '49-(179)649-2641', 'sbevansh@shop-pro.jp', 'ONVACATION', 'S2');			
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Brander', 'Sciacovelli', '33-(275)680-7989', 'bsciacovellii@bloomberg.com', 'ONDUTY', 'S3');
-insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Boyd', 'Lineen', '7-(171)990-4715', 'blineenj@facebook.com', 'OFFDUTY', 'S4');
-
-
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'registered', 'H4J 1W2', '405 Springs Drive', '1 American Place', 24, 451, 'undeliverable', 'Amity Denty', 'Christiane Hardie');
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', '90210', '', '61091 Pearson Hill', 24, 449, 'undeliverable', 'Yelena Kemmish', 'Mimi Siburn');
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', '202190', '54 Quincy Center', '1298 Tomscot Plaza', 10, 38, 'delivered', 'Celia Horley', 'Bradan McCleverty');
@@ -153,7 +131,31 @@ insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddre
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 1H2', '4715 Onsgard Court', '37 Erie Road', 4, 95, 'delivered', 'Cybil Petrollo', 'Erinna Brelsford');
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 5L6', '92 Killdeer Crossing', '747 Grayhawk Circle', 0, 122, 'delivered', 'Ariella Shotboult', 'Carl Tappor');
 insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 2W6', '50820 Anhalt Court', '24 Everett Plaza', 27, 99, 'undeliverable', 'Ardella Meni', 'Lambert Huggill');
-insert into Mail (MailId, Registration, PostalCode, ReturnAddress, DeliveryAddress, Weight, TotalPostage, DeliveryStatus, SenderName, ReceiverName) values (MailIdSequence.NEXTVAL, 'unregistered', 'H4J 6J9', '4965 Di Loreto Point', '9361 Homewood Avenue', 21, 54, 'undeliverable', 'Kial Duckit', 'Blake Gilliat');
+
+
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Raimund', 'Stegell', '86-(938)743-3259', 'rstegell0@wikimedia.org', 'OFFDUTY', 'S12');			
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (PmIdSequence.NEXTVAL, 'PostMaster', 'Auberon', 'Davidai', '86-(215)159-3756', 'adavidai1@salon.com', 'SICK', 'S13');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Marcus', 'Risman', '86-(184)781-5870', 'mrisman2@tripadvisor.com', 'ONVACATION', 'S1');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Jacquette', 'Provest', '63-(704)823-0421', 'jprovest3@spiegel.de', 'SICK', 'S11');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Nat', 'Lovelady', '86-(707)193-6390', 'nlovelady4@unblog.fr', 'AVAILABLE', 'S5');				
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Amitie', 'O''Flaherty', '7-(515)466-0530', 'aoflaherty5@tiny.cc', 'SICK', 'S12');		
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Pattin', 'Abramovic', '963-(816)508-6897', 'pabramovic6@mit.edu', 'ONDUTY', 'S20');				
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Charo', 'Murty', '86-(258)583-7795', 'cmurty7@weebly.com', 'SICK', 'S8');				
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Gavra', 'Pascho', '385-(475)798-8943', 'gpascho8@scientificamerican.com', 'AVAILABLE', 'S20');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Claiborne', 'Tatterton', '1-(988)856-7976', 'ctatterton9@loc.gov', 'ONDUTY', 'S2');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Sheelah', 'Perotti', '249-(791)753-4945', 'sperottia@biglobe.ne.jp', 'ONVACATION', 'S3');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Ella', 'Mulloch', '380-(742)608-5800', 'emullochb@addthis.com', 'ONVACATION', 'S6');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Dori', 'Creavin', '1-(814)946-4389', 'dcreavinc@eepurl.com', 'SICK', 'S7');	
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Jaimie', 'Blainey', '241-(955)139-7698', 'jblaineyd@yandex.ru', 'AVAILABLE', 'S9');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (ClIdSequence.NEXTVAL, 'Clerk', 'Cordy', 'Huckabe', '86-(443)495-6420', 'chuckabee@washingtonpost.com', 'SICK', 'S15');	
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Rodie', 'Vasilyevski', '86-(970)260-4925', 'rvasilyevskif@desdev.cn', 'SICK', 'S18');		
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Gallard', 'Scotchmer', '86-(677)355-2760', 'gscotchmerg@nyu.edu', 'SICK', 'S8');			
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Sonny', 'Bevans', '49-(179)649-2641', 'sbevansh@shop-pro.jp', 'ONVACATION', 'S2');			
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Brander', 'Sciacovelli', '33-(275)680-7989', 'bsciacovellii@bloomberg.com', 'ONDUTY', 'S3');
+insert into Employees (EmployeeId, Role, Firstname, Lastname, Phone, Email, Availability, ScheduleId) values (CaIdSequence.NEXTVAL, 'Carrier', 'Boyd', 'Lineen', '7-(171)990-4715', 'blineenj@facebook.com', 'OFFDUTY', 'S4');
+
+
+
 
 INSERT INTO price (MIN, MAX, country, price) VALUES (0, 30, 'local', 0.85);
 INSERT INTO price (MIN, MAX, country, price) VALUES (0, 30, 'us', 1.20);
