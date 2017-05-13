@@ -33,32 +33,6 @@ BEGIN
    END IF;
 END;
 
-/* Generate routeid */
-CREATE OR REPLACE TRIGGER Routes_before_insert
-BEFORE INSERT
-   ON Routes
-   FOR EACH ROW
-  declare 
-   TYPE scheduleIds IS VARRAY(1000) of VARCHAR2(64);
-   sIDS scheduleIds;
-BEGIN
-  :new.RouteId :=('R' || :new.RouteId);
-  -- should be this or is between value for current_date and current_date + 3 or something
-   SELECT scheduleid BULK COLLECT INTO sIDS FROM schedule ORDER BY dbms_random.value;
-  if sIDS.Count > 0 then
-    :new.ScheduleId := sids(1);
-  end if;
-END;
-
-/* Generate VehicleId */
-CREATE OR REPLACE TRIGGER Vehicles_before_insert
-BEFORE INSERT
-   ON Vehicles
-   FOR EACH ROW
-BEGIN
-  :new.VehicleId :=('V' || :new.VehicleId);
-END;
-
 /*Trigger to automaticall place employee in proper table after employee insert */
 CREATE OR REPLACE TRIGGER Employees_After_insert
 AFTER INSERT
@@ -106,6 +80,33 @@ BEGIN
         END IF;
     END if;
 END;
+
+/* Generate routeid */
+CREATE OR REPLACE TRIGGER Routes_before_insert
+BEFORE INSERT
+   ON Routes
+   FOR EACH ROW
+  declare 
+   TYPE scheduleIds IS VARRAY(1000) of VARCHAR2(64);
+   sIDS scheduleIds;
+BEGIN
+  :new.RouteId :=('R' || :new.RouteId);
+  -- should be this or is between value for current_date and current_date + 3 or something
+   SELECT scheduleid BULK COLLECT INTO sIDS FROM schedule ORDER BY dbms_random.value;
+  if sIDS.Count > 0 then
+    :new.ScheduleId := sids(1);
+  end if;
+END;
+
+/* Generate VehicleId */
+CREATE OR REPLACE TRIGGER Vehicles_before_insert
+BEFORE INSERT
+   ON Vehicles
+   FOR EACH ROW
+BEGIN
+  :new.VehicleId :=('V' || :new.VehicleId);
+END;
+
 
 /* Find available truck */
 CREATE OR REPLACE TRIGGER before_carrier_insert

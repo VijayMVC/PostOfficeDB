@@ -122,11 +122,13 @@ public class Carrier {
 			
 			stmt.execute();
 			ResultSet rs = (ResultSet)stmt.getObject(2);
-			
+			print( "All mail for Carrier Id\t" +cID);
 			while (rs.next()){
-				print( "Carrier Id" +rs.getString(1));
-				print("Route Id" + rs.getString(2));
-				print("Mail Id" + rs.getString(3));
+			
+				print("Route Id\t" + rs.getString(2));
+				print("Mail Id\t" + rs.getString(3));
+				print("PostalCode\t" + rs.getString(4));
+				print("");
 				
 			}
 		} catch (SQLException s) {

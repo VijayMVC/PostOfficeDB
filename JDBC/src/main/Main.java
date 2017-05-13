@@ -34,7 +34,7 @@ public class Main {
 			con = getConnection();
 			
 			//Carriers
-			String cID = "CA14";
+			String cID = "CA7";
 			//Carrier.getCarrierRouteAndTruck(cID);
 			Carrier.getMailToDeliver(cID);
 			//Carrier.getMailToDeliverByPostalCode(cID, "H7T 3R4");

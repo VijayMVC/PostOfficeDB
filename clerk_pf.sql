@@ -95,40 +95,6 @@ BEGIN
   close csr;
 EXCEPTION
    WHEN NO_DATA_FOUND THEN
-        dbms_output.put_line('No Mail for this address '||address);
+        dbms_output.put_line('No Mail for this receiver '||pReceiver);
 END;
  
-/* View all mail, by route, postal code, address and name of recipient or sender. */
- 
- 
-CREATE OR REPLACE PROCEDURE viewAllMail(mConstraint IN varchar2, mType IN varchar2, csr OUT SYS_REFCURSOR) AS
-BEGIN
- IF mType = 'route' THEN
-  OPEN csr FOR
-    SELECT mailid, deliveryaddress, returnAddress, senderName, receiverName, weight FROM mail
-    JOIN postalcode USING (postalcode)
-    WHERE routeId = mConstraint;
- elsif mType = 'postalcode' THEN
- OPEN csr FOR
-    SELECT mailid, deliveryaddress, returnAddress, senderName, receiverName, weight FROM mail
-    WHERE postalcode = mConstraint;
-   
- elsif mType = 'address' THEN
- OPEN csr FOR
-    SELECT mailid, deliveryaddress, returnAddress, senderName, receiverName, weight FROM mail
-    WHERE deliveryaddress = mConstraint;    
- 
- elsif mType = 'sender' THEN
- OPEN csr FOR
-    SELECT mailid, deliveryaddress, returnAddress, senderName, receiverName, weight FROM mail
-    WHERE senderName = mConstraint;      
- 
- elsif mType = 'recipient' THEN
- OPEN csr FOR
-    SELECT mailid, deliveryaddress, returnAddress, senderName, receiverName, weight FROM mail
-    WHERE receiverName = mConstraint;
-END IF;
-EXCEPTION
-   WHEN NO_DATA_FOUND THEN
-        dbms_output.put_line('No Mail for this sender '||pSender);
-END;

@@ -30,7 +30,7 @@ CREATE TABLE Building (
 CREATE TABLE Carrier (
     EmployeeId varchar2(64)  NOT NULL,
     RouteId varchar2(64) ,
-    VehicleId varchar2(64)  NOT NULL,
+    VehicleId varchar2(64)  ,
     BuildingId varchar2(64)  NOT NULL,
     CONSTRAINT Carrier_pk PRIMARY KEY (EmployeeId)
 ) ;
@@ -83,7 +83,7 @@ CREATE TABLE Mail (
     DeliveryAddress varchar2(64)  NOT NULL,
     Weight number(38)  NOT NULL,
     TotalPostage number(38)  NOT NULL,
-    DeliveryStatus varchar2(64)  NOT NULL,
+    DeliveryStatus varchar2(64) ,
     SenderName varchar2(64)  NOT NULL,
     ReceiverName varchar2(64)  NOT NULL,
     Country VARCHAR2(64) CHECK (Country='us' or Country='international' or Country='local'),

@@ -98,7 +98,7 @@ BEGIN
 	dbms_output.put_line(cID);
 --carriers view the mailroute and truck are assigned to
   open csr for
-  select employeeid, routeid, mailid from carrier
+  select employeeid, routeid, mailid, postalcode from carrier
   join postalcode using(routeid)
   join mail using (postalcode)
   where employeeid = cID
@@ -114,7 +114,7 @@ create or replace function GetMailToDeliverTest(cID IN varchar) RETURN sys_refcu
  GetMailToDeliver(cID,rc);
  return rc;
  end;		
-select GetMailToDeliverTest('CA1') from dual;
+select GetMailToDeliverTest('CA7') from dual;
 
 -- get mail route and truck they are assigned to
 CREATE OR REPLACE PROCEDURE GetRouteAndTruck(cID in varchar2,csr OUT SYS_REFCURSOR) as  
